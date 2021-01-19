@@ -5,11 +5,12 @@ const resetButton = document.querySelector("#reset")
 const theTimer = document.querySelector(".timer")
 
 var timer = [0, 0, 0, 0]
-
+var interval
+var timerRunning = false
 // Adiciona zero inicial aos numeros <= 9
 
 function leadingZero(time){
-    if(time <= 9){
+    if (time <= 9){
         time = "0" + time
     }
     return time
@@ -33,12 +34,13 @@ function runTimer(){
 function spellCheck(){
     let textEntered = testArea.value
     let originTextMatch = originText.substring(0,textEntered.length)
-    if(textEntered == originText){
+    if (textEntered == originText){
+        clearInterval(interval)
         testWrapper.style.borderColor = "#429890"
-    }else{
-        if(textEntered == originTextMatch){
+    } else {
+        if (textEntered == originTextMatch){
             testWrapper.style.borderColor = "#65CCf3"
-        }else{
+        } else  {
             testWrapper.style.borderColor = "#E95D0F"
         }
     }
@@ -49,9 +51,9 @@ function spellCheck(){
 function start(){
     let textEnteredLength = testArea.value.length
     //console.log(textEnteredLength)
-    if (textEnteredLength === 0){
-        setInterval(runTimer, 10)
-
+    if (textEnteredLength === 0 && !timerRunning){
+        interval = setInterval(runTimer, 10)
+        timerRunning = true
     }
 }
 
