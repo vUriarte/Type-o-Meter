@@ -8,10 +8,17 @@ var timer = [0, 0, 0, 0]
 
 // Adiciona zero inicial aos numeros <= 9
 
+function leadingZero(time){
+    if(time <= 9){
+        time = "0" + time
+    }
+    return time
+}
+
 // Executa um timer padrão de minuto / segundo / centesimo
 
 function runTimer(){
-    let currentTimer = timer[0] + ":" + timer[1] + ":" + timer[2]  
+    let currentTimer = leadingZero(timer[0]) + ":" + leadingZero(timer[1]) + ":" + leadingZero(timer[2])  
     theTimer.innerHTML = currentTimer
     timer[3]++
 
@@ -25,7 +32,16 @@ function runTimer(){
 
 function spellCheck(){
     let textEntered = testArea.value
-    console.log(textEntered)
+    let originTextMatch = originText.substring(0,textEntered.length)
+    if(textEntered == originText){
+        testWrapper.style.borderColor = "#429890"
+    }else{
+        if(textEntered == originTextMatch){
+            testWrapper.style.borderColor = "#65CCf3"
+        }else{
+            testWrapper.style.borderColor = "#E95D0F"
+        }
+    }
 }
 
 // Inicia o cronometro
