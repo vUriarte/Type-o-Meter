@@ -60,7 +60,13 @@ function start(){
 // Recomecar o cronometro
 
 function reset(){
-    console.log("botao pressionado")
+    clearInterval(interval)
+    interval = null
+    timer = [0, 0, 0, 0]
+    timerRunning = false
+    testArea.value = ""
+    theTimer.innerHTML = "00:00:00"
+    testWrapper.style.borderColor = 'grey'
 }
 
 // Executa um timer padrão de minuto / segundo / centesimo
